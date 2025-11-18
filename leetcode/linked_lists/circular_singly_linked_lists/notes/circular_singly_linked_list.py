@@ -76,6 +76,38 @@ class CircularLinkedList:
                 return False 
             node = node.next
         return False
+    
+    def deletion(self, posn): 
+        if posn == 0: 
+            if self.head == self.tail: 
+                self.head = None 
+                self.tail = None 
+            else: 
+                nextNode = self.head.next
+                self.tail.next = nextNode
+                self.head = nextNode
+        elif posn == -1: 
+            node = self.head
+            while node: 
+                if node.next == self.tail:
+                    break
+                node = node.next
+            
+            prevNode = node
+            prevNode.next = self.head
+            self.tail = prevNode
+        else: 
+            idx = 0 
+            tempNode = self.head
+            while idx < posn - 1: 
+                tempNode = tempNode.next
+
+            tempNode.next = tempNode.next.next
+
+    def deleteEntire(self): 
+        self.head = None 
+        self.tail = None
+
             
 
 
@@ -107,3 +139,13 @@ print("------TRAVERSAL----")
 myCSLL.traversal()
 
 print(myCSLL.search(122))
+
+print( [ i for i in myCSLL])
+myCSLL.deletion(0)
+print( [ i for i in myCSLL])
+myCSLL.deletion(-1)
+print( [ i for i in myCSLL])
+myCSLL.deletion(1)
+print( [ i for i in myCSLL])
+myCSLL.deleteEntire()
+print( [ i for i in myCSLL])
