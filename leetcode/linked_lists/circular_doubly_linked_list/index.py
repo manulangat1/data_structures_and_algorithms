@@ -133,6 +133,16 @@ class CircularDoublyLinkedList:
                 if nodeToDelete == self.tail:
                     self.tail = tempNode
 
+    def deleteEntireCDLL(self):
+        if self.head is None:
+            return
+
+        self.tail.next = None
+        self.head.prev = None
+
+        self.head = None
+        self.tail = None
+
 
 myCDLL = CircularDoublyLinkedList()
 myCDLL.createCDLL(10)
